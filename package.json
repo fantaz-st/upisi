@@ -25,5 +25,12 @@
     "@eslint/eslintrc": "^3",
     "eslint": "^9",
     "eslint-config-next": "15.5.2"
+  },
+  "engines": {
+    "node": ">=20 <21"
+  },
+  "packageManager": "npm@10",
+  "overrides": {
+    "error-ex": "1.3.2"
   }
 }
