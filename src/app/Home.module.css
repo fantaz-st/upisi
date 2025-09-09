@@ -1,0 +1,57 @@
+.wrap {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr minmax(340px, 760px);
+  background: #fff;
+}
+
+.left {
+  background: url("/assets/images/ship.jpg") center/cover no-repeat;
+}
+
+.right {
+  display: flex !important;
+  flex-direction: column;
+  justify-content: center;
+  padding: clamp(24px, 6vw, 72px);
+}
+
+.title {
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  margin: 0 0 0.25rem;
+}
+
+.sub {
+  opacity: 0.7;
+  margin: 0 0 2rem;
+}
+
+.card {
+  border-radius: 18px;
+}
+
+.ca {
+  padding: 24px;
+}
+
+.chip {
+  margin-bottom: 8px;
+}
+
+.desc {
+  opacity: 0.7;
+  margin-top: 0.25rem;
+}
+
+@media (max-width: 960px) {
+  .wrap {
+    grid-template-columns: 1fr;
+  }
+  .left {
+    display: none;
+  }
+  .right {
+    padding: clamp(24px, 8vw, 80px);
+  }
+}
