@@ -1,13 +1,10 @@
-"use client";
-
-import { useSearchParams, useRouter } from "next/navigation";
+import Link from "next/link";
 import { Box, Button, Container, Typography } from "@mui/material";
+import CopyId from "./CopyId";
 
-export default function HvalaPage() {
-  const search = useSearchParams();
-  const router = useRouter();
-  const id = search.get("id");
-  const updated = search.get("updated") === "1";
+export default function HvalaPage({ searchParams }) {
+  const id = searchParams?.id ?? null;
+  const updated = searchParams?.updated === "1";
 
   return (
     <Box
@@ -17,7 +14,7 @@ export default function HvalaPage() {
         gridTemplateColumns: { xs: "1fr", md: "25vw minmax(0,60vw) 15vw" },
       }}
     >
-      {/* Left fixed image to match form layout */}
+      {/* Left fixed image */}
       <Box sx={{ display: { xs: "none", md: "block" }, position: "relative" }}>
         <Box
           aria-hidden
@@ -41,24 +38,19 @@ export default function HvalaPage() {
         </Typography>
         <Typography sx={{ fontSize: 18, mb: 3 }}>Vaša prijava je {updated ? "ažurirana" : "zaprimljena"}.</Typography>
 
-        {id && (
-          <Box sx={{ borderRadius: 2, border: "1px solid #e0e0e0", p: 2, mb: 3, display: "inline-block" }}>
-            <Typography sx={{ fontWeight: 700, mb: 0.5 }}>ID prijave</Typography>
-            <Typography sx={{ fontFamily: "monospace" }}>{id}</Typography>
-            <Button size="small" sx={{ mt: 1 }} onClick={() => navigator.clipboard.writeText(id)}>
-              Kopiraj ID
-            </Button>
-          </Box>
-        )}
+        <CopyId id={id} />
 
         <Box sx={{ display: "flex", gap: 2 }}>
-          <Button variant="contained" sx={{ background: "#5e2a84" }} onClick={() => router.push("/")}>
+          <Button component={Link} href="/" variant="contained" sx={{ background: "#5e2a84" }}>
             Povratak na početnu
           </Button>
-          <Button onClick={() => router.push("/diplomski")}>Nova prijava</Button>
+          <Button component={Link} href="/diplomski">
+            Nova prijava
+          </Button>
         </Box>
       </Container>
 
+      {/* Right spacer */}
       <Box />
     </Box>
   );
